@@ -1,0 +1,68 @@
+# @package _global_
+defaults:
+  - /pretrain_model: mirage
+  - /image_transformation
+  - /callbacks:  
+      - model_checkpoint
+      - upload_config
+      - lr_monitor
+  - /logger:
+      - wandb
+  - /image_encoder@pretrain_model.image_encoder: resnet
+  - /text_encoder@pretrain_model.text_encoder: sentence_biomed_bert
+  - /data@pretrain_model.train_dataset: pmc
+  - /data@pretrain_model.validation_dataset: pmc
+  - /data@pretrain_model.test_dataset: pmc
+
+
+pretrain_model:
+    learning_rate: 1e-4
+    learning_rate_start: 1e-8
+    learning_rate_end: 0
+    weight_decay: 0.2
+    max_epochs: 100
+    optim: adamw
+    warmup_epochs: 10
+    image_encoder:
+        name: resnet50
+        pool_method: attention
+        load_from: ../../pretrained/resnet50_moco.pt
+    train_dataset:
+      dataset_path: <train_jsonl_path> # update this line
+      image_transform:
+        - ${image_transformation.resize}
+        - ${image_transformation.random_affine}
+        - ${image_transformation.random_horizontal_flip}
+      rate: 1.0
+    validation_dataset:
+      dataset_path: <valid_jsonl_path> # update this line
+      image_transform:
+        - ${image_transformation.resize}
+      rate: 1.0
+    test_dataset:
+      dataset_path: <test_jsonl_path> # update this line
+      image_transform:
+        - ${image_transformation.resize}
+      rate: 1.0
+    pcl_temperature: 0.07
+    rcl_temperature: 0.9
+    otc_temperature: 0.07
+    batch_size: 256
+    queue_temperature: 0.07
+    load_from: 
+    #queue_size: 2048
+    #queue_size: 131072
+    lambda_rcl: 0.2
+    lambda_otc: 0.05
+
+
+num_workers: 32
+trainer:
+  gpus: [0,1,2,3]
+  sync_batchnorm: true
+  precision: bf16
+  #gradient_clip_val: 0.5
+
+experiment_name: pmc_oa_mirage
+
+

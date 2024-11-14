@@ -1,0 +1,25 @@
+_target_: mirage.models.mirage.Mirage
+text_encoder: ???
+image_encoder: ???
+gpus: ${trainer.gpus}
+max_epochs: 100
+warmup_epochs: 10
+batch_size: 32
+optim: adam
+scheduler: linear_warmup_cosine_annealing
+learning_rate: 1e-5
+learning_rate_start: 1e-6
+learning_rate_end: 1e-5
+weight_decay: 1e-6
+pcl_temperature: 0.07
+embed_dim: 768
+exclude_bn_bias: False
+num_workers: ${num_workers}
+frozen_text_encoder: false
+queue_size: 65536
+
+
+  
+
+
+

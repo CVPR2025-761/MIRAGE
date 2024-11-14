@@ -1,0 +1,7 @@
+
+_target_: mirage.encoders.image.swin.SwinTransformer
+in_channels: ${pretrain_model.train_dataset.num_colors}
+image_size: ${image_size}
+name: swin_tiny_patch4_window7_224
+pretrained: true
+pool_method: mean

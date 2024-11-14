@@ -1,0 +1,9 @@
+_target_: mirage.data.pretrain.pmc.pmc_oa.PmcOaDataset
+root_path: <image_path> # update this line
+dataset_path: ???
+image_transform: ???
+text_transform: []
+num_colors: 3
+rate: 1.0
+max_length: 77
+pretrained_name: ${pretrain_model.text_encoder.pretrained_name}

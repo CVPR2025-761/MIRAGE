@@ -1,0 +1,3 @@
+_target_: mirage.encoders.language.bert.SentenceBioMedBert
+max_length: ${pretrain_model.train_dataset.max_length}
+pretrained_name: kamalkraj/BioSimCSE-BioLinkBERT-BASE

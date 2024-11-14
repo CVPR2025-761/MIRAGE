@@ -1,0 +1,7 @@
+
+_target_: mirage.encoders.image.vit.ViT
+in_channels: ${pretrain_model.train_dataset.num_colors}
+image_size: ${image_size}
+name: vit_base_patch16_224
+pretrained: true
+pool_method: cls
