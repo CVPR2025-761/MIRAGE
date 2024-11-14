@@ -55,7 +55,7 @@ pretrained_name: ${pretrain_model.text_encoder.pretrained_name}
 ```
 
 ### Model Preparation
-We released the pre-trained ResNet50 weights pre-trained on PMC-OA-Image set using MoCo at [release page](https://github.com/CVPR2025-761/MIRAGE/releases/download/Weights/resnet50_moco.pt). Please put it in the `./pretrained/resnet50_moco.pt`. MIRAGE will firstly load the weights into ResNet50 automatically before training.
+We released the pre-trained ResNet50 weights pre-trained on PMC-OA-Image set using MoCo at [release page](https://github.com/CVPR2025-761/MIRAGE/releases/download/Weights/resnet50_moco.ckpt). Please put it in the `./pretrained/resnet50_moco.pt`. MIRAGE will firstly load the weights into ResNet50 automatically before training.
 
 
 ### Pre-train
