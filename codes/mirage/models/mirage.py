@@ -219,7 +219,7 @@ class Mirage(PretrainModel):
             Tuple[torch.Tensor, torch.Tensor]:
                 indices and projected features of the nearest neighbors.
         """
-        score = self.queue_temp * (z @ queue.T) 
+        score = self.queue_logit_scale.exp() * (z @ queue.T) 
         score = F.softmax(score, dim=-1) # [B, N]
         idx = torch.argmax(score, dim=-1)
         # assign score on queue
